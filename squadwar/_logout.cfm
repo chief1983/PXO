@@ -13,4 +13,4 @@
 <cfset session.firstname=''>
 <cfset session.lastname=''>
 <cfset session.email=''>
-<cflocation url="http://www.squadwar.com">
+<cflocation url="index.cfm">

@@ -20,7 +20,11 @@
 					<img src="<cfoutput>#relativepath#</cfoutput>images/main/header_top.jpg" width=110 height=23 alt="" border="0"><br>
 				</td>
 				<td valign="top" width="100%" height="23" background="<cfoutput>#relativepath#</cfoutput>images/main/bkg_bar_top.gif">
-					<a href="http://www.squadwar.com"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/home.gif" width=100 height=23 alt="" border="0"></a><a href="http://vbb.volition-inc.com/cgi-bin/Ultimate.cgi"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/forums.gif" width=100 height=23 alt="" border="0"></a><a href="http://www.squadwar.com/rules/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/rules.gif" width=100 height=23 alt="" border="0"></a><a href="http://www.squadwar.com/faq"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/faq.gif" width=100 height=23 alt="" border="0"></a><a href="http://www.squadwar.com/staff"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/staff.gif" width=100 height=23 alt="" border="0"></a><br>
+					<a href="<cfoutput>#relativepath#</cfoutput>"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/home.gif" width=100 height=23 alt="" border="0"></a><a 
+						href="http://www.hard-light.net/forums/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/forums.gif" width=100 height=23 alt="" border="0"></a><a 
+						href="<cfoutput>#relativepath#</cfoutput>rules/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/rules.gif" width=100 height=23 alt="" border="0"></a><a 
+						href="<cfoutput>#relativepath#</cfoutput>faq/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/faq.gif" width=100 height=23 alt="" border="0"></a><a 
+						href="<cfoutput>#relativepath#</cfoutput>staff/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/staff.gif" width=100 height=23 alt="" border="0"></a><br>
 				</td>
 			</tr>			
 			<tr>
