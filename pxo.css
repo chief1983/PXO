@@ -1,0 +1,66 @@
+P  {}
+
+H1  {}
+
+H2  {}
+
+H3  {}
+
+A  {
+	color : rgb(90,99,247);
+	text-decoration : none;
+}
+
+A:Visited  {
+	color : rgb(90,99,247);
+	text-decoration : none;
+}
+
+A:Active  {
+	color : rgb(255,255,255);
+	text-decoration : underline;
+}
+
+A:Hover  {
+	color : rgb(255,255,255);
+	text-decoration : underline;
+}
+
+BODY  {
+	scrollbar-face-color: black; 
+	scrollbar-shadow-color: black; 
+	scrollbar-highlight-color: #ffffff; 
+	scrollbar-3dlight-color: black; 
+	scrollbar-darkshadow-color: black; 
+	scrollbar-track-color: #00217B; 
+	scrollbar-arrow-color: rgb(90,99,247);
+}
+
+.newsitem  {
+	font-family : Arial;
+	font-weight : normal;
+	color : #BBBBBB;
+	font-size : 10pt;
+}
+
+.newsitemtitle  {
+	font-family : Arial;
+	font-weight : bold;
+	color : White;
+	font-size : 12pt;
+}
+
+.copy  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : #BBBBBB;
+	font-weight : normal;
+}
+
+.copysm  {
+	font-size : 8pt;
+	font-family : Arial;
+	color : #BBBBBB;
+	font-weight : normal;
+}
+

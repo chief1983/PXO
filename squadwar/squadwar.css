@@ -1,0 +1,122 @@
+P  {}
+
+H1  {
+	font-weight : bold;
+	color : Black;
+}
+
+H2  {}
+
+H3  {}
+
+A  {
+	color : rgb(92,170,110);
+}
+
+A:Visited  {
+	color : rgb(92,170,110);
+}
+
+A:Active  {
+	color : rgb(138,255,165);
+	text-decoration : underline;
+}
+
+A:Hover  {
+	color : rgb(138,255,165);
+	text-decoration : underline;
+}
+
+BODY  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : white;
+	scrollbar-face-color: black; 
+	scrollbar-shadow-color: black; 
+	scrollbar-highlight-color: #ffffff; 
+	scrollbar-3dlight-color: black; 
+	scrollbar-darkshadow-color: black; 
+	scrollbar-track-color: #172A1B; 
+	scrollbar-arrow-color: rgb(92,170,110);
+}
+
+.newstitle  {
+	font-family : Arial;
+	font-weight : bold;
+	color : White;
+	font-size : 12pt;
+}
+
+.newsitem  {
+	font-family : Arial;
+	color : Silver;
+	font-size : 10pt;
+}
+
+.title  {
+	font-family : Arial;
+	font-weight : bold;
+	color : White;
+	font-size : 12pt;
+}
+
+.copy  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : White;
+}
+
+.form_required  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : White;
+}
+
+.form  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : Silver;
+}
+
+.recruit  {
+	font-size : 8pt;
+	font-family : Arial;
+	color : White;
+}
+
+.admin_table  {
+	font-size : 8pt;
+	font-family : Arial;
+	color : White;
+}
+
+.squadtable  {
+	font-size : 8pt;
+	font-family : Arial;
+	color : White;
+}
+
+.mapcaption  {
+	font-size : 8pt;
+	font-family : Arial;
+	color : White;
+}
+
+.question  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : #5A63F7;
+}
+
+.answer  {
+	font-size : 10pt;
+	font-family : Arial;
+	color : white;
+}
+
+.editor  {
+	font-family : Arial;
+	font-size : 10pt;
+	color : Silver;
+}
+

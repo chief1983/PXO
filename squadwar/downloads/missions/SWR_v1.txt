@@ -1,0 +1,27 @@
+Team vs. Team Mission Bugs:
+
+MT-01
+Ships: The Erinyes is available to Team 2 but not available to Team 1.
+
+MT-03
+Ships: The Ursa, Boanerges, Seth, Horus, Thoth, Serapis, Tauret, Sekhmet, Osiris, and Bakha are available to Team 1 but not available to Team 2.  The Erinyes is available to Team 2 but not Team 1. 
+Weapons: The Piranha is available to Team 1 but not to team 2.  The Stiletto II is available to team 2 but not to team 1.  The Helios is available to Team 1 but not to team 2.
+
+MT-05
+Weapons: The Prometheus R is available to Team 1 but not to team 2.  The Cyclops available to Team 1 is Cyclops#short, but the Cyclops available to Team 2 is simply the Cyclops.
+
+MT-07
+Ships: The Ulysses is available to Team 2 but not to Team 1.
+Weapons: The Mekhu HL-7 is available to team 1 but not to team 2.
+
+MT-09
+Ships: The Ulysses is available to team 2 but not to team 1.
+
+MT-10
+Ships: The Ulysses is available to Team 2 but not to team 1.
+
+Loadouts have been made equal for both teams on the missions listed above.
+
+Time limits on MT-06, MT-07, MT-08, MT-09, and MT-10 have been increased to 6 minutes before the bonus is awarded.
+
+Missions mt-01.fs2, mt-03.fs2, mt-05.fs2, mt-06.fs2, mt-07.fs2, mt-08.fs2, mt-09.fs2, and mt-10.fs2 have been invalidated on PXO meaning that stats won't store while playing the old missions.  The MT missions will be patched in the next FreeSpace 2 patch, and these SWR- releases will be made invalid.
