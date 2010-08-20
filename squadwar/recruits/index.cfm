@@ -58,7 +58,7 @@
 						<cfif type IS 'kills'>
 							<cfif isdefined("application.squadwarrecruitboardkillsmax")><cfset app_fskillsmax=application.squadwarrecruitboardkillsmax><cfelse><cfset app_fskillsmax=0></cfif>
 								<CFQUERY NAME="recruits" DATASOURCE="#currentdatasource#"> <!---  cachedwithin="#CreateTimeSpan(0,0,10,0)#"> --->
-								SELECT      Freespace2Full.TrackerID, Freespace2Full.Rank, Freespace2Full.Pilot, Freespace2Full.Score, Freespace2Full.KillCountOK, Freespace2Full.MissionsFlown, Freespace2Full.FlightTime
+								SELECT      FreeSpace2Full.TrackerID, FreeSpace2Full.Rank, FreeSpace2Full.Pilot, FreeSpace2Full.Score, FreeSpace2Full.KillCountOK, FreeSpace2Full.MissionsFlown, FreeSpace2Full.FlightTime
 											,SWPilots.ICQ
 											,(SELECT type FROM form_connection_type WHERE ID = SWPilots.connection_type) AS fetch_connection_type
 											,(SELECT value_hours FROM form_time_zones WHERE ID = SWPilots.time_zone) AS fetch_time_zone_hours
@@ -66,8 +66,8 @@
 											,SWPilots.Member_Since
 											,SWPilots.show_email AS SWShowEmail
 											,SWPilots.email	AS SWEmail	
-								FROM         SWPilots, Freespace2Full 
-								WHERE ((Freespace2Full.TrackerID = SWPilots.TrackerID) AND (Freespace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1)) <!--- AND ((KillCountOK > #app_fskillsmax#) AND (MissionsFlown > 0)) --->
+								FROM         SWPilots, FreeSpace2Full 
+								WHERE ((FreeSpace2Full.TrackerID = SWPilots.TrackerID) AND (FreeSpace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1)) <!--- AND ((KillCountOK > #app_fskillsmax#) AND (MissionsFlown > 0)) --->
 								ORDER BY  KillCountOK DESC
 								</CFQUERY>
 								<cfloop query="recruits" startrow="#Evaluate(maxscore + 99)#" endrow="#Evaluate(maxscore + 100)#">
@@ -76,7 +76,7 @@
 						<cfelse><cfif type IS 'msns'>
 								<cfif isdefined("application.squadwarrecruitboardmsnsmax")><cfset app_fsmsnsmax=application.squadwarrecruitboardmsnsmax><cfelse><cfset app_fsmsnsmax=0></cfif>
 								<CFQUERY NAME="recruits" DATASOURCE="#currentdatasource#"> <!---  cachedwithin="#CreateTimeSpan(0,0,10,0)#"> --->
-								SELECT      Freespace2Full.TrackerID, Freespace2Full.Rank, Freespace2Full.Pilot, Freespace2Full.Score, Freespace2Full.KillCountOK, Freespace2Full.MissionsFlown, Freespace2Full.FlightTime
+								SELECT      FreeSpace2Full.TrackerID, FreeSpace2Full.Rank, FreeSpace2Full.Pilot, FreeSpace2Full.Score, FreeSpace2Full.KillCountOK, FreeSpace2Full.MissionsFlown, FreeSpace2Full.FlightTime
 											,SWPilots.ICQ
 											,(SELECT type FROM form_connection_type WHERE ID = SWPilots.connection_type) AS fetch_connection_type
 											,(SELECT value_hours FROM form_time_zones WHERE ID = SWPilots.time_zone) AS fetch_time_zone_hours
@@ -84,8 +84,8 @@
 											,SWPilots.Member_Since
 											,SWPilots.show_email AS SWShowEmail
 											,SWPilots.email	AS SWEmail					
-								FROM         SWPilots, Freespace2Full 
-								WHERE ((Freespace2Full.TrackerID = SWPilots.TrackerID) AND (Freespace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1))	<!---  AND (MissionsFlown > #app_fsmsnsmax#) --->
+								FROM         SWPilots, FreeSpace2Full 
+								WHERE ((FreeSpace2Full.TrackerID = SWPilots.TrackerID) AND (FreeSpace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1))	<!---  AND (MissionsFlown > #app_fsmsnsmax#) --->
 								ORDER BY  MissionsFlown DESC
 								</CFQUERY>
 								<cfloop query="recruits" startrow="#Evaluate(maxscore + 99)#" endrow="#Evaluate(maxscore + 100)#">
@@ -94,7 +94,7 @@
 						<cfelse><cfif type IS 'time'>
 								<cfif isdefined("application.squadwarrecruitboardtimemax")><cfset app_fstimemax=application.squadwarrecruitboardtimemax><cfelse><cfset app_fstimemax=0></cfif>
 								<CFQUERY NAME="recruits" DATASOURCE="#currentdatasource#"> <!---  cachedwithin="#CreateTimeSpan(0,0,10,0)#"> --->
-								SELECT      Freespace2Full.TrackerID, Freespace2Full.Rank, Freespace2Full.Pilot, Freespace2Full.Score, Freespace2Full.KillCountOK, Freespace2Full.MissionsFlown, Freespace2Full.FlightTime
+								SELECT      FreeSpace2Full.TrackerID, FreeSpace2Full.Rank, FreeSpace2Full.Pilot, FreeSpace2Full.Score, FreeSpace2Full.KillCountOK, FreeSpace2Full.MissionsFlown, FreeSpace2Full.FlightTime
 											,SWPilots.ICQ
 											,(SELECT type FROM form_connection_type WHERE ID = SWPilots.connection_type) AS fetch_connection_type
 											,(SELECT value_hours FROM form_time_zones WHERE ID = SWPilots.time_zone) AS fetch_time_zone_hours
@@ -102,8 +102,8 @@
 											,SWPilots.Member_Since
 											,SWPilots.show_email AS SWShowEmail
 											,SWPilots.email	AS SWEmail					
-								FROM         SWPilots, Freespace2Full 
-								WHERE ((Freespace2Full.TrackerID = SWPilots.TrackerID) AND (Freespace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1)) <!--- AND (FlightTime > #app_fstimemax# AND MissionsFlown > 0) --->
+								FROM         SWPilots, FreeSpace2Full 
+								WHERE ((FreeSpace2Full.TrackerID = SWPilots.TrackerID) AND (FreeSpace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1)) <!--- AND (FlightTime > #app_fstimemax# AND MissionsFlown > 0) --->
 								ORDER BY  FlightTime DESC
 								</CFQUERY>
 								<cfloop query="recruits" startrow="#Evaluate(maxscore + 99)#" endrow="#Evaluate(maxscore + 100)#">
@@ -112,7 +112,7 @@
 						<cfelse>
 								<cfif isdefined("application.squadwarrecruitboardscoresmax")><cfset app_fsscoresmax=application.squadwarrecruitboardscoresmax><cfelse><cfset app_fsscoresmax=0></cfif>
 								<CFQUERY NAME="recruits" DATASOURCE="#currentdatasource#"> <!---  cachedwithin="#CreateTimeSpan(0,0,10,0)#"> --->
-								SELECT      Freespace2Full.TrackerID, Freespace2Full.Rank, Freespace2Full.Pilot, Freespace2Full.Score, Freespace2Full.KillCountOK, Freespace2Full.MissionsFlown, Freespace2Full.FlightTime
+								SELECT      FreeSpace2Full.TrackerID, FreeSpace2Full.Rank, FreeSpace2Full.Pilot, FreeSpace2Full.Score, FreeSpace2Full.KillCountOK, FreeSpace2Full.MissionsFlown, FreeSpace2Full.FlightTime
 											,SWPilots.ICQ
 											,(SELECT type FROM form_connection_type WHERE ID = SWPilots.connection_type) AS fetch_connection_type
 											,(SELECT value_hours FROM form_time_zones WHERE ID = SWPilots.time_zone) AS fetch_time_zone_hours
@@ -120,8 +120,8 @@
 											,SWPilots.Member_Since		
 											,SWPilots.show_email AS SWShowEmail
 											,SWPilots.email	AS SWEmail							
-								FROM         SWPilots, Freespace2Full 
-								WHERE ((Freespace2Full.TrackerID = SWPilots.TrackerID) AND (Freespace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1))
+								FROM         SWPilots, FreeSpace2Full 
+								WHERE ((FreeSpace2Full.TrackerID = SWPilots.TrackerID) AND (FreeSpace2Full.Pilot = SWPilots.Pilot_Name) AND (SWPilots.Recruitme=1))
 								ORDER BY  Score DESC
 								</CFQUERY>
 								<cfloop query="recruits" startrow="#Evaluate(maxscore + 99)#" endrow="#Evaluate(maxscore + 100)#">
