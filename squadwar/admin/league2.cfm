@@ -125,7 +125,7 @@ function openAnyWindow(url, name) {
 								,(SELECT Squad_Red FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Red
 								,(SELECT Squad_Green FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Green
 								,(SELECT Squad_Blue FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Blue
-								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.squadid = SWSquads.Squadid) AS win_loss
+								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWSquads.SquadID) AS win_loss
 						FROM SWSquads LEFT JOIN SWSectors ON SWSquads.SquadId = SWSectors.SectorSquad
 						WHERE SWSquads.SquadId IN (#squads_in_this_league#)
 						GROUP BY SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers

@@ -37,7 +37,7 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 						SELECT  SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active 
 								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad)) AS CountOfSectorName
 								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadId OR match_loser = SWSquads.SquadId) ) AS totalmatches
-								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.squadid = SWSquads.Squadid) AS win_loss
+								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWSquads.SquadID) AS win_loss
 								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
 						FROM SWSquads LEFT JOIN SWSectors ON SWSquads.SquadId = SWSectors.SectorSquad
 						GROUP BY SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers

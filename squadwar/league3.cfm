@@ -135,90 +135,90 @@ function openAnyWindow(url, name) {
 					
 <!---					
 					<cfquery datasource="#currentdatasource#" name="rank_count">
-						SELECT  SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
+						SELECT  SWSquads.SquadName, SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers
 
-								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) OR (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode		
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode_Challenger
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) ) AS CountOfSWCode_Defender
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadId OR match_loser = SWSquads.SquadId) ) AS totalmatches
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadId) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadId) OR (match_history.match_loser = SWSquads.SquadId)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
+								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadID = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) OR (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode		
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode_Challenger
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) ) AS CountOfSWCode_Defender
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadID ) AS wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadID OR match_loser = SWSquads.SquadID) ) AS totalmatches
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadID) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadID) OR (match_history.match_loser = SWSquads.SquadID)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
 								,SWSquad_Info.Squad_Red AS Red, SWSquad_Info.Squad_Green AS Green, SWSquad_Info.Squad_Blue AS Blue, SWSquad_Info.power_rating
-						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadId = SWSquad_Info.SquadID
-						WHERE (SWSquads.SquadId IN (#squads_in_this_league#)) AND (SWSquads.Active = YES)
+						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadID = SWSquad_Info.SquadID
+						WHERE (SWSquads.SquadID IN (#squads_in_this_league#)) AND (SWSquads.Active = YES)
 						 ORDER BY  power_rating DESC, SWSquads.SquadName
 					</cfquery>	
 --->
 <!---
 					<cfquery datasource="#currentdatasource#" name="rank_count">
-						SELECT  SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
+						SELECT  SWSquads.SquadName, SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers
 
-								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) OR (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode		
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode_Challenger
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) ) AS CountOfSWCode_Defender
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadId OR match_loser = SWSquads.SquadId) ) AS totalmatches
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadId) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadId) OR (match_history.match_loser = SWSquads.SquadId)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
+								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadID = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) OR (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode		
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode_Challenger
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) ) AS CountOfSWCode_Defender
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadID ) AS wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadID OR match_loser = SWSquads.SquadID) ) AS totalmatches
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadID) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadID) OR (match_history.match_loser = SWSquads.SquadID)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
 	
 								
-								,(SELECT Squad_Red FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Red
-								,(SELECT Squad_Green FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Green
-								,(SELECT Squad_Blue FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Blue
-								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.squadid = SWSquads.Squadid) AS win_loss 						
-								,(SELECT power_rating FROM SWSquad_Info WHERE SWSquad_Info.squadid = SWsquads.squadid) AS power_rating
+								,(SELECT Squad_Red FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Red
+								,(SELECT Squad_Green FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Green
+								,(SELECT Squad_Blue FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Blue
+								,(SELECT win_loss FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWSquads.SquadID) AS win_loss 						
+								,(SELECT power_rating FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWsquads.squadid) AS power_rating
 								
 								,SWSquad_Info.Squad_Red AS Red, SWSquad_Info.Squad_Green AS Green, SWSquad_Info.Squad_Blue AS Blue, SWSquad_Info.power_rating
-						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadId = SWSquad_Info.SquadID
-						WHERE (SWSquads.SquadId IN (#squads_in_this_league#)) AND (SWSquads.Active = YES)
-						 GROUP BY SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers 
+						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadID = SWSquad_Info.SquadID
+						WHERE (SWSquads.SquadID IN (#squads_in_this_league#)) AND (SWSquads.Active = YES)
+						 GROUP BY SWSquads.SquadName, SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers 
 						 HAVING ((SWSquads.Active)=Yes) 
 						 ORDER BY  power_rating DESC,  Count(SWSectors.SectorName) DESC, SWSquads.SquadName; 
 					</cfquery>	---> 
 					<cfquery datasource="#currentdatasource#" name="rank_count">
-						SELECT  SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
-								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) OR (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode							
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad1) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Challenger
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Defender
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadId OR match_loser = SWSquads.SquadId) ) AS totalmatches
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadId) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadId) OR (match_history.match_loser = SWSquads.SquadId)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
-								,(SELECT Squad_Red FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Red
-								,(SELECT Squad_Green FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Green
-								,(SELECT Squad_Blue FROM SWSquad_Info WHERE SWSquads.SquadId = SWSquad_Info.SquadId) AS Blue
-								<!--- ,(SELECT power_rating FROM SWSquad_Info WHERE SWSquad_Info.squadid = SWsquads.squadid) AS power_rating --->
+						SELECT  SWSquads.SquadName, SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers
+								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadID = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) OR (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode							
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad1) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Challenger
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Defender
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadID ) AS wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadID OR match_loser = SWSquads.SquadID) ) AS totalmatches
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadID) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadID) OR (match_history.match_loser = SWSquads.SquadID)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
+								,(SELECT Squad_Red FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Red
+								,(SELECT Squad_Green FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Green
+								,(SELECT Squad_Blue FROM SWSquad_Info WHERE SWSquads.SquadID = SWSquad_Info.SquadID) AS Blue
+								<!--- ,(SELECT power_rating FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWsquads.squadid) AS power_rating --->
 								,SWSquad_Info.power_rating
 						FROM SWSectors, SWSquad_Info, SWSquads
-							<!--- RIGHT OUTER JOIN SWSquads ON SWSquads.SquadId = SWSectors.SectorSquad JOIN SWSquad_Info ON SWSquad_Info.squadid = SWsquads.squadid --->
-						WHERE SWSquads.SquadId IN (#squads_in_this_league#) AND (SWSectors.League_ID = #leagueID#)
-								AND SWSquads.SquadId = SWSectors.SectorSquad
-								AND SWSquad_Info.squadid = SWsquads.squadid
-						GROUP BY SWSquads.SquadName ,SWSquad_Info.power_rating ,SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
+							<!--- RIGHT OUTER JOIN SWSquads ON SWSquads.SquadID = SWSectors.SectorSquad JOIN SWSquad_Info ON SWSquad_Info.SquadID = SWsquads.squadid --->
+						WHERE SWSquads.SquadID IN (#squads_in_this_league#) AND (SWSectors.League_ID = #leagueID#)
+								AND SWSquads.SquadID = SWSectors.SectorSquad
+								AND SWSquad_Info.SquadID = SWsquads.squadid
+						GROUP BY SWSquads.SquadName ,SWSquad_Info.power_rating ,SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers
 						HAVING ((SWSquads.Active)=Yes) 
 						ORDER BY Count(SWSectors.SectorName) DESC , SWSquad_Info.power_rating DESC, SWSquads.SquadName;
 					</cfquery>	
 					
 					<cfquery datasource="#currentdatasource#" name="rank_count2">
-						SELECT  SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
+						SELECT  SWSquads.SquadName, SWSquads.SquadID, SWSquads.Active, SWSquads.SquadMembers
 
-								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) OR (SWSquads.SquadId = SWMatches.SWSquad1) ) AS CountOfSWCode		
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad1) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Challenger
-								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadId = SWMatches.SWSquad2) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Defender
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadId OR match_loser = SWSquads.SquadId) ) AS totalmatches
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadId) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
-								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadId) OR (match_history.match_loser = SWSquads.SquadId)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
+								,(SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadID = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) AS CountOfSectorName
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) OR (SWSquads.SquadID = SWMatches.SWSquad1) ) AS CountOfSWCode		
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad1) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Challenger
+								,(SELECT COUNT(SWMatches.SWCode) FROM SWMatches WHERE (SWSquads.SquadID = SWMatches.SWSquad2) AND (SWMatches.League_ID = #leagueID#)) AS CountOfSWCode_Defender
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadID ) AS wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE (match_victor = SWSquads.SquadID OR match_loser = SWSquads.SquadID) ) AS totalmatches
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } )  WHERE (match_history.match_victor = SWSquads.SquadID) AND (SWSectors.League_ID = #leagueid#)  ) AS l_wins
+								,(SELECT COUNT(match_history.match_victor) FROM match_history LEFT JOIN SWSectors ON (SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) WHERE ((match_history.match_victor = SWSquads.SquadID) OR (match_history.match_loser = SWSquads.SquadID)) AND (SWSectors.League_ID = #leagueid#)) AS l_totalmatches 
 								,SWSquad_Info.Squad_Red AS Red, SWSquad_Info.Squad_Green AS Green, SWSquad_Info.Squad_Blue AS Blue, SWSquad_Info.power_rating
-						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadId = SWSquad_Info.SquadID
-						WHERE (SWSquads.SquadId IN (#squads_in_this_league#)) 
+						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquads.SquadID = SWSquad_Info.SquadID
+						WHERE (SWSquads.SquadID IN (#squads_in_this_league#)) 
 								AND (SWSquads.Active = YES) 
-								AND (SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadId = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) = 0
+								AND (SELECT COUNT(SWSectors.SectorName) FROM SWSectors WHERE (SWSquads.SquadID = SWSectors.SectorSquad) AND (SWSectors.League_ID = #leagueID#) ) = 0
 						ORDER BY  power_rating DESC, SWSquads.SquadName
 					</cfquery>					
 
