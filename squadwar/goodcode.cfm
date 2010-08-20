@@ -23,7 +23,7 @@
 <cfquery datasource="#currentdatasource#" name="challenge_test">
 	SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
 			 ,SWSectors.SectorName, SWSectors.Entry_Node
-			 ,SwSquads.SquadName  
+			 ,SWSquads.SquadName  
 	FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
 	WHERE	SWSectors.SectorSquad = #current_team#
 	ORDER BY SWSectors_Graph.SWSectors_ID	
@@ -80,7 +80,7 @@ list: <cfoutput>#test_sectors_list_to_check#</cfoutput><p>
 <cfquery datasource="#currentdatasource#" name="adjacent_test_owned">
 	SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
 			 ,SWSectors.SectorName, SWSectors.Entry_Node
-			 ,SwSquads.SquadName  
+			 ,SWSquads.SquadName  
 	FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
 	WHERE	((SWSectors.SWSectors_ID IN (#test_sectors_list_to_check#)) AND (SWSectors.SectorSquad <> 0) AND (SWSectors.Entry_Node = 0))
 	ORDER BY SWSectors_Graph.SWSectors_ID	
@@ -99,7 +99,7 @@ list: <cfoutput>#test_sectors_list_to_check#</cfoutput><p>
 <cfquery datasource="#currentdatasource#" name="adjacent_test_unowned">
 	SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
 			 ,SWSectors.SectorName, SWSectors.Entry_Node
-			 ,SwSquads.SquadName  
+			 ,SWSquads.SquadName  
 	FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
 	WHERE	((SWSectors.SWSectors_ID IN (#test_sectors_list_to_check#)) AND (SWSectors.SectorSquad = 0) AND (SWSectors.Entry_Node = 0)) 
 	ORDER BY SWSectors_Graph.SWSectors_ID	
@@ -190,7 +190,7 @@ final list of sectors can challenge:<cfoutput>#final_sectors_can_challenge#</cfo
 <cfquery datasource="#currentdatasource#" name="final_challenge">
 	SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
 			 ,SWSectors.SectorName, SWSectors.Entry_Node
-			 ,SwSquads.SquadName  
+			 ,SWSquads.SquadName  
 	FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
 	WHERE	(SWSectors.SWSectors_ID IN (#final_sectors_can_challenge#))
 	ORDER BY SWSectors_Graph.SWSectors_ID	

@@ -72,7 +72,7 @@ Flight Time: <cfoutput>#str_days#d #str_hours#h #str_minutes#m #str_seconds#s or
 
 <cfquery datasource="SquadWar" name="count_sw_squads">
 	SELECT Count(Squadid) AS totalusers
-	FROM SwSquads
+	FROM SWSquads
 </cfquery>		
 
 <cfoutput><b>#count_sw_squads.totalusers#</b></cfoutput> SquadWar Squadrons<br>

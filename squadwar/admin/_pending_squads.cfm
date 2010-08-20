@@ -13,7 +13,7 @@
 </cfquery>
 
 <cfquery datasource="SquadWar" name="update_pending_squads">
-	UPDATE SwSquad_Info
+	UPDATE SWSquad_Info
 	SET APPROVED=1
 	WHERE Squadid = #squadid#
 </cfquery>

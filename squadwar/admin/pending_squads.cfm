@@ -38,7 +38,7 @@
 					</cfquery>								
 					<cfquery datasource="SquadWar" name="count_sw_squads" cachedwithin="#CreateTimeSpan(0,0,30,0)#">
 						SELECT Count(Squadid) AS totalusers
-						FROM SwSquads
+						FROM SWSquads
 					</cfquery>					
 					<div class="title">PXO at a glance:</div>
 					<div class="copy">
@@ -59,12 +59,12 @@
 				<div class="title">Squads Pending Activation</div>
 				<p>
 					<cfquery datasource="SquadWar" name="get_squads_not_approved">
-						SELECT SwSquads.SquadId, SwSquads.SquadName,
-							SwSquad_Info.Squad_Leader_ICQ,
-							SwSquad_Info.Squad_IRC,
-							SwSquad_Info.Squad_Web_Link,
-							SwSquad_Info.Squad_Email
-						FROM SWSquads LEFT JOIN SwSquad_Info ON SwSquad_Info.SquadID = SWSquads.SquadID
+						SELECT SWSquads.SquadId, SWSquads.SquadName,
+							SWSquad_Info.Squad_Leader_ICQ,
+							SWSquad_Info.Squad_IRC,
+							SWSquad_Info.Squad_Web_Link,
+							SWSquad_Info.Squad_Email
+						FROM SWSquads LEFT JOIN SWSquad_Info ON SWSquad_Info.SquadID = SWSquads.SquadID
 						WHERE Active = 0 AND suspended =0
 					</cfquery>
 

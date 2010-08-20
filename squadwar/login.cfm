@@ -62,7 +62,7 @@
 					</cfquery>								
 					<cfquery datasource="SquadWar" name="count_sw_squads" cachedwithin="#CreateTimeSpan(0,0,30,0)#">
 						SELECT Count(Squadid) AS totalusers
-						FROM SwSquads
+						FROM SWSquads
 					</cfquery>					
 					<div class="title">PXO at a glance:</div>
 					<table><tr><td>

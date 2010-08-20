@@ -42,7 +42,7 @@ Squads that have played matches: <cfoutput><b>#get_squads.recordcount#</b></cfou
 </cfquery>
 
 <cfquery datasource="SquadWar" name="delete_lame_squad2">
-	DELETE FROM SwSquad_Info			
+	DELETE FROM SWSquad_Info			
 	WHERE Squadid NOT IN (#played_squads#)
 </cfquery>
 

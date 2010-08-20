@@ -12,7 +12,7 @@
 </cfquery>
 
 <cfquery datasource="SquadWar" name="update_pending_squads">
-	DELETE FROM SwSquad_Info
+	DELETE FROM SWSquad_Info
 	WHERE Squadid = #squadid#
 </cfquery>
 
