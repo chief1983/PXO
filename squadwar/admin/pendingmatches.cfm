@@ -70,17 +70,17 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 </div>
 
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT swmatches.Swcode, swmatches.swsquad1, swmatches.swsquad2, swmatches.League_ID
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad1) AS Squad1_name
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad2) AS Squad2_name
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad1) AS Squad1_Email
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad2) AS Squad2_Email
-		, swmatches.swsector_ID
-		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS Sectorname
-		,(SELECT SectorSquad FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS SectorSquad
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+	SELECT SWMatches.SWCode, SWMatches.swsquad1, SWMatches.swsquad2, SWMatches.League_ID
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad1) AS Squad1_name
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad2) AS Squad2_name
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad1) AS Squad1_Email
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad2) AS Squad2_Email
+		, SWMatches.swsector_ID
+		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS Sectorname
+		,(SELECT SectorSquad FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS SectorSquad
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
 	ORDER BY SWMatches_Info.Time_Created DESC
 </cfquery>
 
@@ -103,13 +103,13 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 														</cfif>
 													</div>
 												</td>
-												<td><div class="copy">&nbsp;#Swcode#&nbsp;</div></td>
+												<td><div class="copy">&nbsp;#SWCode#&nbsp;</div></td>
 												<td>
 													<div class="copy">
 														
-														<a href="_award_match.cfm?code=#Swcode#&sector=#get_matches.swsector_id#&time=#checkdate#&league=#get_matches.League_ID#&first=#get_matches.SWSquad1#&second=#get_matches.SWSquad2#&winner=#get_matches.SWSquad1#&loser=#get_matches.SWSquad2#">#get_matches.squad1_name#</a>
+														<a href="_award_match.cfm?code=#SWCode#&sector=#get_matches.swsector_id#&time=#checkdate#&league=#get_matches.League_ID#&first=#get_matches.SWSquad1#&second=#get_matches.SWSquad2#&winner=#get_matches.SWSquad1#&loser=#get_matches.SWSquad2#">#get_matches.squad1_name#</a>
 														Challenged
-														<a href="_award_match.cfm?code=#Swcode#&sector=#get_matches.swsector_id#&time=#checkdate#&league=#get_matches.League_ID#&first=#get_matches.SWSquad1#&second=#get_matches.SWSquad2#&winner=#get_matches.SWSquad2#&loser=#get_matches.SWSquad1#">#get_matches.squad2_name#</a>
+														<a href="_award_match.cfm?code=#SWCode#&sector=#get_matches.swsector_id#&time=#checkdate#&league=#get_matches.League_ID#&first=#get_matches.SWSquad1#&second=#get_matches.SWSquad2#&winner=#get_matches.SWSquad2#&loser=#get_matches.SWSquad1#">#get_matches.squad2_name#</a>
 														for control of 
 														<cfif get_matches.sectorsquad IS 0><b>Unclaimed</b></cfif>
 														Sector 
@@ -133,7 +133,7 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 														<a href="mailto:#Squad2_Email#">#Squad2_Email#</a>
 													</div>
 												</td>		
-												<td><div class="copy"><a href="delete_match.cfm?id=#Swcode#">delete</a></div></td>										
+												<td><div class="copy"><a href="delete_match.cfm?id=#SWCode#">delete</a></div></td>										
 											</tr>
 							</cfoutput>		
 								<cfif coloredrow IS 1><cfset coloredrow=0><tr bgcolor="#0B160D"><cfelse><tr><cfset coloredrow=1></cfif>

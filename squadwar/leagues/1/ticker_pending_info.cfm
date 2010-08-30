@@ -7,14 +7,14 @@
 -->
 
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT swmatches.Swcode
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad1) AS Squad1_name
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad2) AS Squad2_name
-		, swmatches.swsector_ID
-		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS Sectorname
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+	SELECT SWMatches.SWCode
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad1) AS Squad1_name
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad2) AS Squad2_name
+		, SWMatches.swsector_ID
+		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS Sectorname
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
 	WHERE SWMatches.League_ID = 1
 	ORDER BY SWMatches_Info.Time_Created
 </cfquery>

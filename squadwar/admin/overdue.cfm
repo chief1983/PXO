@@ -8,19 +8,19 @@
 
 <cfquery datasource="squadwar" name="get_pending_matches">
 	SELECT SWMatches.SWCode, SWMatches.SWSquad1, SWMatches.SWSquad2, SWMatches.SWSector_ID, SWMatches.League_ID
-		,SWMatches_INFO.match_time1 ,SWMatches_INFO.match_time2 ,SWMatches_INFO.proposed_final_time 
-		,SWMatches_INFO.proposed_alternate_time ,SWMatches_INFO.squad_last_proposed
-		,SWMatches_INFO.final_match_time ,SWMatches_INFO.time_created 
-		,SWMatches_INFO.dispute
-		,SWMatches_INFO.status_last_changed
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
-	WHERE swmatches.SWCODE = '#id#'
-	ORDER BY SWMatches_INFO.time_created
+		,SWMatches_Info.match_time1 ,SWMatches_Info.match_time2 ,SWMatches_Info.proposed_final_time 
+		,SWMatches_Info.proposed_alternate_time ,SWMatches_Info.squad_last_proposed
+		,SWMatches_Info.final_match_time ,SWMatches_Info.time_created 
+		,SWMatches_Info.dispute
+		,SWMatches_Info.status_last_changed
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
+	WHERE SWMatches.SWCode = '#id#'
+	ORDER BY SWMatches_Info.time_created
 </cfquery>
 
 <table width="" border=1 cellspacing=0>
 	<tr>
-		<td>SWcode</td>
+		<td>SWCode</td>
 		<td>time_created</td>
 		<td>SWSquad1</td>
 		<td>SWSquad2</td>
@@ -43,7 +43,7 @@
 
 	<cfoutput>
 		<tr>
-			<td>#SWcode#&nbsp;</td>
+			<td>#SWCode#&nbsp;</td>
 			<td>#time_created#&nbsp;</td>
 			<td>#SWSquad1#&nbsp;</td>
 			<td>#SWSquad2#&nbsp;</td>
@@ -85,7 +85,7 @@
 	<cfoutput>
 	<tr>
 		<td>#time_created#</td>
-		<td>#SWcode#</td>
+		<td>#SWCode#</td>
 		<td>
 				<cfset current_phase=1>
 				<cfif get_pending_matches.match_time2 IS NOT ''><cfset current_phase=2></cfif>

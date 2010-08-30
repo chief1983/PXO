@@ -8,23 +8,23 @@
 
 <cfquery datasource="squadwar" name="get_pending_matches">
 	SELECT SWMatches.SWCode, SWMatches.SWSquad1, SWMatches.SWSquad2, SWMatches.SWSector_ID, SWMatches.League_ID
-		,SWMatches_INFO.match_time1 ,SWMatches_INFO.match_time2 ,SWMatches_INFO.proposed_final_time 
-		,SWMatches_INFO.proposed_alternate_time ,SWMatches_INFO.squad_last_proposed
-		,SWMatches_INFO.final_match_time ,SWMatches_INFO.time_created 
-		,SWMatches_INFO.dispute
-		,SWMatches_INFO.status_last_changed		
-		,SWMatches_INFO.swsquad1_reports_noshow 		
-		,SWMatches_INFO.swsquad2_reports_noshow 
-		,SWMatches_INFO.swsquad1_protest 
-		,SWMatches_INFO.swsquad2_protest
-		,SWMatches_INFO.mail_sent
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
-	ORDER BY SWMatches_INFO.time_created
+		,SWMatches_Info.match_time1 ,SWMatches_Info.match_time2 ,SWMatches_Info.proposed_final_time 
+		,SWMatches_Info.proposed_alternate_time ,SWMatches_Info.squad_last_proposed
+		,SWMatches_Info.final_match_time ,SWMatches_Info.time_created 
+		,SWMatches_Info.dispute
+		,SWMatches_Info.status_last_changed		
+		,SWMatches_Info.swsquad1_reports_noshow 		
+		,SWMatches_Info.swsquad2_reports_noshow 
+		,SWMatches_Info.swsquad1_protest 
+		,SWMatches_Info.swsquad2_protest
+		,SWMatches_Info.mail_sent
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWmatches_Info.SWCode = SWMatches.SWCode
+	ORDER BY SWMatches_Info.time_created
 </cfquery>
 <!---
 <table width="" border=1 cellspacing=0>
 	<tr>
-		<td>SWcode</td>
+		<td>SWCode</td>
 		<td>time_created</td>
 		<td>SWSquad1</td>
 		<td>SWSquad2</td>
@@ -47,7 +47,7 @@
 
 	<cfoutput>
 		<tr>
-			<td>#SWcode#&nbsp;</td>
+			<td>#SWCode#&nbsp;</td>
 			<td>#time_created#&nbsp;</td>
 			<td>#SWSquad1#&nbsp;</td>
 			<td>#SWSquad2#&nbsp;</td>
@@ -88,7 +88,7 @@
 <cfloop query="get_pending_matches">
 	<cfoutput>
 	<tr>
-		<td>#SWcode#</td>
+		<td>#SWCode#</td>
 		<td>#time_created#</td>	
 		<td>#status_last_changed#</td>	
 		<td>
@@ -123,7 +123,7 @@
 		</td>
 		<td>
 				<cfif overdue>
-					<a href="overdue.cfm?id=#SWcode#"><cfif pastdue>pastdue<cfelse>overdue</cfif></a>
+					<a href="overdue.cfm?id=#SWCode#"><cfif pastdue>pastdue<cfelse>overdue</cfif></a>
 				</cfif>
 		</td>
 	</cfoutput>
@@ -215,8 +215,8 @@
 					</cfoutput>									
 					<!--- email to winner --->
 			
-<cfmail to="#match_winner.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system has updated match #SWcode#.
+<cfmail to="#match_winner.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system has updated match #SWCode#.
 
 The match was stuck in phase #current_phase#.  Therefore, your squad was awarded the forfeit for this match versus #match_loser.SquadName#.
 
@@ -237,8 +237,8 @@ Message delivered via the auto-forfeit system.
 
 					<!--- email to loser --->
 			
-<cfmail to="#match_loser.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system has updated match #SWcode#.
+<cfmail to="#match_loser.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system has updated match #SWCode#.
 
 The match was stuck in phase #current_phase# for longer than the allowed time.  Therefore, your squad forfeits this match versus #match_winner.SquadName#.
 
@@ -275,8 +275,8 @@ Message delivered via the auto-forfeit system.
 								WHERE SWSquads.SquadID = #swsquad2#
 							</cfquery>								
 							
-<cfmail to="#swsquad1_email.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system is reporting the status of match #SWcode#.
+<cfmail to="#swsquad1_email.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system is reporting the status of match #SWCode#.
 
 The match did not occur in the scheduled time and both squads reported a no-show.  You will be contacted by an administrator regarding the status of this match.
 
@@ -297,8 +297,8 @@ Message delivered via the auto-forfeit system.
 
 					<!--- email to loser --->
 			
-<cfmail to="#swsquad2_email.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system is reporting the status of match #SWcode#.
+<cfmail to="#swsquad2_email.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system is reporting the status of match #SWCode#.
 
 The match did not occur in the scheduled time and both squads reported a no-show.  You will be contacted by an administrator regarding the status of this match.
 
@@ -376,8 +376,8 @@ Message delivered via the auto-forfeit system.
 								FROM SWMatches
 								WHERE SWCode = '#SWCode#'
 							</cfquery>			
-<cfmail to="#match_winner.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system has updated match #SWcode#.
+<cfmail to="#match_winner.squad_email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system has updated match #SWCode#.
 
 The match was overdue and only your squad reported a no-show.  Therefore, your squad was awarded the forfeit for this match versus #match_loser.SquadName#.
 
@@ -398,8 +398,8 @@ Message delivered via the auto-forfeit system.
 
 					<!--- email to loser --->
 			
-<cfmail to="#match_loser.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWcode# - Auto-Forfeit System Notification">
-The Auto-Forfeit system has updated match #SWcode#.
+<cfmail to="#match_loser.squadname#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="#SWCode# - Auto-Forfeit System Notification">
+The Auto-Forfeit system has updated match #SWCode#.
 
 The match was overdue and your squad did not report a no-show.  Therefore, your squad forfeits this match versus #match_winner.SquadName#.
 

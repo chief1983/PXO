@@ -14,7 +14,7 @@
 
 <cfquery datasource="PXO" name="get_pxo_stuff">
 	SELECT *
-	FROM users
+	FROM Users
 	WHERE (login='#form.pxo_login#') AND (password='#form.pxo_password#')
 </cfquery>
 

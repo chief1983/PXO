@@ -7,7 +7,7 @@
 -->
 
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT match_history.Swcode
+	SELECT match_history.SWCode
 		,match_history.special
 		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = match_history.match_victor) AS Squad1_name
 		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = match_history.match_loser) AS Squad2_name
@@ -15,7 +15,7 @@
 		, match_history.match_time
 		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) AS Sectorname 
 		,SWMatches_Info.Time_Created
-	FROM match_history LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = match_history.Swcode
+	FROM match_history LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = match_history.SWCode
 	WHERE match_history.league_id = 1
 	ORDER BY  match_history.match_time DESC
 </cfquery>

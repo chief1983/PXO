@@ -49,17 +49,17 @@
 	 	<center>
 	 		<table width="95%" cellpadding=0 cellspacing=0 border=0><tr><td>	
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT swmatches.Swcode, swmatches.swsquad1, swmatches.swsquad2
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad1) AS Squad1_name
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad2) AS Squad2_name
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad1) AS Squad1_Email
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad2) AS Squad2_Email
-		, swmatches.swsector_ID
-		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS Sectorname
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+	SELECT SWMatches.SWCode, SWMatches.swsquad1, SWMatches.swsquad2
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad1) AS Squad1_name
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad2) AS Squad2_name
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad1) AS Squad1_Email
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad2) AS Squad2_Email
+		, SWMatches.swsector_ID
+		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS Sectorname
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
 		,(SELECT Title FROM SWLeagues WHERE SWMatches.League_ID = SWLeagues.League_ID) AS LeagueName
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
 	WHERE (SWMatches.swsquad1 = #session.squadid#) OR (SWMatches.swsquad2 = #session.squadid#)
 	ORDER BY SWMatches_Info.Time_Created DESC
 </cfquery>
@@ -93,7 +93,7 @@
 														</cfif>
 													</div>
 												</td>
-												<td valign="top"><div class="copy">&nbsp;<a href="squad_match_info.cfm?matchid=#get_matches.SWcode#"><font color="red">#get_matches.Swcode#</font></a>&nbsp;</div></td>
+												<td valign="top"><div class="copy">&nbsp;<a href="squad_match_info.cfm?matchid=#get_matches.SWCode#"><font color="red">#get_matches.SWCode#</font></a>&nbsp;</div></td>
 												<td valign="top"><div class="copy">#LeagueName#&nbsp;</div></td>
 												<td valign="top">
 													<div class="copy">
@@ -123,7 +123,7 @@
 													<cfquery datasource="#currentdatasource#" name="get_schedule_info">
 														SELECT *
 														FROM SWMatches_Info
-														WHERE SWCode = '#get_matches.swcode#'
+														WHERE SWCode = '#get_matches.SWCode#'
 													</cfquery>
 													<cfset current_phase=1>
 													<cfif get_schedule_info.match_time2 IS NOT ''><cfset current_phase=2></cfif>

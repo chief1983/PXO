@@ -70,16 +70,16 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 </div>
 
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT swmatches.Swcode, swmatches.swsquad1, swmatches.swsquad2
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad1) AS Squad1_name
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad2) AS Squad2_name
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad1) AS Squad1_Email
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad2) AS Squad2_Email
-		, swmatches.swsector_ID
-		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS Sectorname
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+	SELECT SWMatches.SWCode, SWMatches.swsquad1, SWMatches.swsquad2
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad1) AS Squad1_name
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad2) AS Squad2_name
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad1) AS Squad1_Email
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad2) AS Squad2_Email
+		, SWMatches.swsector_ID
+		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS Sectorname
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
 	ORDER BY SWMatches_Info.Time_Created DESC
 </cfquery>
 
@@ -103,7 +103,7 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 														</cfif>
 													</div>
 												</td>
-												<td><div class="copy">&nbsp;#Swcode#&nbsp;</div></td>
+												<td><div class="copy">&nbsp;#SWCode#&nbsp;</div></td>
 												<td>
 													<div class="copy">
 														
@@ -134,13 +134,13 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 											</tr>
 											</cfoutput>
 <cfif get_matches.time_created LT DateAdd("d",-7,Now())>
-<cfmail to="#Squad1_Email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="SquadWar:Challenge:Delinquent Match - #Swcode#" server="v-exchange.volition.net">
+<cfmail to="#Squad1_Email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="SquadWar:Challenge:Delinquent Match - #SWCode#" server="v-exchange.volition.net">
 
 Respond directly to this email!  If your squad receives multiple emails regarding outstanding matches, reply to each one individually so the subject stays intact!
 										
 Your squad has an outstanding SquadWar match.  Please respond with the current status and situation of the match listed below.  Please respond within 24 hours or the Administrator may force a forfeit of your match.  If you have already sent email to the Administrator regarding the status of this match, please do so again as this is a bulk emailing.
 
-Match Code: #Swcode#
+Match Code: #SWCode#
 Created On: #DateFormat(get_matches.time_created,"m.d.yy")#
 #get_matches.squad1_name# Challenged #get_matches.squad2_name# for control of Sector #get_matches.swsector_id# #get_matches.SectorName#
 
@@ -152,13 +152,13 @@ Please contact me if you have any difficulties or questions.
 - squadwar@pxo.net
 										
 </cfmail>	
-<cfmail to="#Squad2_Email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="SquadWar:Challenge:Delinquent Match - #Swcode#" server="v-exchange.volition.net">
+<cfmail to="#Squad2_Email#" from="squadwar@pxo.net" cc="squadwar@pxo.net" subject="SquadWar:Challenge:Delinquent Match - #SWCode#" server="v-exchange.volition.net">
 							
 Respond directly to this email! If your squad receives multiple emails regarding outstanding matches, reply to each one individually so the subject stays intact!								
 										
 Your squad has an outstanding SquadWar match.  Please respond with the current status and situation of the match listed below.  Please respond within 24 hours or the Administrator may force a forfeit of your match.  If you have already sent email to the Administrator regarding the status of this match, please do so again as this is a bulk emailing.
 
-Match Code: #Swcode#
+Match Code: #SWCode#
 Created On: #DateFormat(get_matches.time_created,"m.d.yy")#
 #get_matches.squad1_name# Challenged #get_matches.squad2_name# for control of Sector #get_matches.swsector_id# #get_matches.SectorName#
 

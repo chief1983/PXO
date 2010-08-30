@@ -9,15 +9,15 @@
 <cfset checkdate=DateDiff('s',CreateDateTime(1970,1,1,0,0,0),NOW())>
 <cfset checkdate=checkdate-604800>
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT match_history.Swcode
+	SELECT match_history.SWCode
 		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = match_history.match_victor) AS Squad1_name
 		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = match_history.match_loser) AS Squad2_name
 		, match_history.swsector_ID
 		, match_history.match_time
 		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = { fn CONVERT(match_history.SWSector_ID,SQL_NUMERIC) } ) AS Sectorname 
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
-	FROM match_history LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = match_history.Swcode
+	FROM match_history LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = match_history.SWCode
 	WHERE  (match_time > #checkdate#) AND (match_history.league_ID = 1)
 	ORDER BY  match_history.match_time DESC
 </cfquery>

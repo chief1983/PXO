@@ -231,7 +231,7 @@
 					 <cfset squadleader_trackerid=get_squad_info.Squad_Leader_ID>
 					 <cfquery datasource="PXO" name="get_squad_leader">
 					 	SELECT Email, Login 
-					 	FROM users 
+					 	FROM Users 
 					 	WHERE TrackerID = '#squadleader_trackerid#'
 					 </cfquery>		
 					 <cfif get_squad_leader.recordcount IS NOT 0>
@@ -304,7 +304,7 @@
 					 				<cfset querystring=replace(querystring, "," , "','", "ALL")>
 					 				<cfquery datasource="PXO" name="getpilotnames">
 					 					SELECT Email, Login, trackerid 
-					 					FROM users 
+					 					FROM Users 
 					 					WHERE TrackerID IN #PreserveSingleQuotes(querystring)# 
 					 				</cfquery>			
 					 				<cfif getpilotnames.recordcount IS NOT 0>									

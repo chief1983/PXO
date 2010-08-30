@@ -47,16 +47,16 @@
 	 	<center>
 	 		<table width="95%" cellpadding=0 cellspacing=0 border=0><tr><td>	
 <cfquery datasource="squadwar" name="get_matches">
-	SELECT swmatches.Swcode, swmatches.swsquad1, swmatches.swsquad2, swmatches.league_id
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad1) AS Squad1_name
-		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = swmatches.swsquad2) AS Squad2_name
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad1) AS Squad1_Email
-		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = swmatches.swsquad2) AS Squad2_Email
-		, swmatches.swsector_ID
-		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = swmatches.swsector_ID) AS Sectorname
-<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWmatches_Info.swcode = swmatches.Swcode) AS match_date --->
+	SELECT SWMatches.SWCode, SWMatches.swsquad1, SWMatches.swsquad2, SWMatches.league_id
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad1) AS Squad1_name
+		,(SELECT SquadName FROM SWSquads WHERE SWSquads.SquadID = SWMatches.swsquad2) AS Squad2_name
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad1) AS Squad1_Email
+		,(SELECT Squad_Email FROM SWSquad_Info WHERE SWSquad_Info.SquadID = SWMatches.swsquad2) AS Squad2_Email
+		, SWMatches.swsector_ID
+		,(SELECT SectorName FROM SWSectors WHERE SWSectors.SWSectors_ID = SWMatches.swsector_ID) AS Sectorname
+<!---		,(SELECT Time_Created FROM SWMatches_Info WHERE SWMatches_Info.SWCode = SWMatches.SWCode) AS match_date --->
 		,SWMatches_Info.Time_Created
-	FROM SWMatches LEFT JOIN SWMatches_INFO ON SWmatches_Info.swcode = swmatches.Swcode
+	FROM SWMatches LEFT JOIN SWMatches_Info ON SWMatches_Info.SWCode = SWMatches.SWCode
 	WHERE ((SWMatches.swsquad1 = #session.squadid#) OR (SWMatches.swsquad2 = #session.squadid#)) AND (SWMatches.SWCode = '#matchid#')
 	ORDER BY SWMatches_Info.Time_Created DESC
 </cfquery>
@@ -66,7 +66,7 @@
 						<cfif get_matches.recordcount IS NOT 0>
 							<cfset coloredrow=1>
 							<cfset thisdate=''>
-								<tr><td colspan="4" align="center"><div class="title">Pending Match <cfoutput>#get_matches.Swcode#</cfoutput></div></td></tr>
+								<tr><td colspan="4" align="center"><div class="title">Pending Match <cfoutput>#get_matches.SWCode#</cfoutput></div></td></tr>
 								<tr>
 									<td><div class="copy">Date</div></td>
 									<td><div class="copy">Code</div></td>
@@ -86,7 +86,7 @@
 														</cfif>
 													</div>
 												</td>
-												<td><div class="copy">&nbsp;#Swcode#&nbsp;<cfset this_swcode=get_matches.swcode></div></td>
+												<td><div class="copy">&nbsp;#SWCode#&nbsp;<cfset this_SWCode=get_matches.SWCode></div></td>
 												<td>
 													<div class="copy">
 														<cfif swsquad1 IS NOT session.squadid><a href="squadinfo.cfm?id=#swsquad1#"></cfif>#get_matches.squad1_name#<cfif swsquad1 IS NOT session.squadid></a></cfif>
@@ -121,17 +121,17 @@
 						</table>
 					
 					
-						<cfquery datasource="#currentdatasource#" name="get_swmatches_info">
+						<cfquery datasource="#currentdatasource#" name="get_SWMatches_info">
 							SELECT *
 							FROM SWMatches_Info
-							WHERE SWCode = '#this_swcode#'
+							WHERE SWCode = '#this_SWCode#'
 						</cfquery>
 						<cfset current_phase=1>
-						<cfif get_swmatches_info.match_time2 IS NOT ''><cfset current_phase=2></cfif>
-						<cfif get_swmatches_info.match_time2 IS NOT ''><cfset current_phase=2></cfif>
-						<cfif get_swmatches_info.proposed_final_time IS NOT ''><cfset current_phase=3></cfif>
-						<cfif get_swmatches_info.proposed_alternate_time IS NOT ''><cfset current_phase=3></cfif>
-						<cfif get_swmatches_info.final_match_time IS NOT ''><cfset current_phase=4></cfif>
+						<cfif get_SWMatches_info.match_time2 IS NOT ''><cfset current_phase=2></cfif>
+						<cfif get_SWMatches_info.match_time2 IS NOT ''><cfset current_phase=2></cfif>
+						<cfif get_SWMatches_info.proposed_final_time IS NOT ''><cfset current_phase=3></cfif>
+						<cfif get_SWMatches_info.proposed_alternate_time IS NOT ''><cfset current_phase=3></cfif>
+						<cfif get_SWMatches_info.final_match_time IS NOT ''><cfset current_phase=4></cfif>
 						<!-- <div class="copy">This match is in the current phase of: <cfoutput>#current_phase#</cfoutput></div> -->
 						<p>
 
@@ -161,7 +161,7 @@
 											<div class="copy">											
 												<select name="date1">
 												<cfloop from='6' to='8' index='day_add' step='1'>												
-													<cfoutput><option value='#day_add#'>#DateFormat(DateAdd('d',day_add,get_swmatches_info.time_created),"mmmm d yyyy")#</cfoutput>
+													<cfoutput><option value='#day_add#'>#DateFormat(DateAdd('d',day_add,get_SWMatches_info.time_created),"mmmm d yyyy")#</cfoutput>
 												</cfloop>
 												</select>																
 											</div>										
@@ -197,7 +197,7 @@
 											<div class="copy">											
 												<select name="date2">
 												<cfloop from='6' to='8' index='day_add' step='1'>												
-													<cfoutput><option value='#day_add#'>#DateFormat(DateAdd('d',day_add,get_swmatches_info.time_created),"mmmm d yyyy")#</cfoutput>
+													<cfoutput><option value='#day_add#'>#DateFormat(DateAdd('d',day_add,get_SWMatches_info.time_created),"mmmm d yyyy")#</cfoutput>
 												</cfloop>
 												</select>																
 											</div>										
@@ -229,7 +229,7 @@
 								</table>
 								</center>
 								<p>
-								<input type="hidden" name="swcode" value="<cfoutput>#get_matches.Swcode#</cfoutput>">
+								<input type="hidden" name="SWCode" value="<cfoutput>#get_matches.SWCode#</cfoutput>">
 								<center><input type='submit' value='Propose these times'></center>
 								</cfform>		
 								
@@ -247,8 +247,8 @@
 								<p>
 								<cfoutput>
 								<div class="copy">
-									<b>Option 1:</b> #DateFormat(get_swmatches_info.match_time1,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.match_time1,"h:mm tt")#<br>
-									<b>Option 2:</b> #DateFormat(get_swmatches_info.match_time2,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.match_time2,"h:mm tt")#<br>
+									<b>Option 1:</b> #DateFormat(get_SWMatches_info.match_time1,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.match_time1,"h:mm tt")#<br>
+									<b>Option 2:</b> #DateFormat(get_SWMatches_info.match_time2,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.match_time2,"h:mm tt")#<br>
 								</div>
 								</cfoutput>
 								
@@ -308,8 +308,8 @@
 										<td>
 											<select name="proposed_final_time">
 												<cfoutput>
-												<option value="#DatePart("yyyy",get_swmatches_info.match_time1)#,#DatePart("m",get_swmatches_info.match_time1)#,#DatePart("d",get_swmatches_info.match_time1)#,#DatePart("h",get_swmatches_info.match_time1)#,#DatePart("n",get_swmatches_info.match_time1)#,#DatePart("s",get_swmatches_info.match_time1)#">#DateFormat(get_swmatches_info.match_time1,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.match_time1,"h:mm tt")#
-												<option value="#DatePart("yyyy",get_swmatches_info.match_time2)#,#DatePart("m",get_swmatches_info.match_time2)#,#DatePart("d",get_swmatches_info.match_time2)#,#DatePart("h",get_swmatches_info.match_time2)#,#DatePart("n",get_swmatches_info.match_time2)#,#DatePart("s",get_swmatches_info.match_time2)#">#DateFormat(get_swmatches_info.match_time2,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.match_time2,"h:mm tt")#
+												<option value="#DatePart("yyyy",get_SWMatches_info.match_time1)#,#DatePart("m",get_SWMatches_info.match_time1)#,#DatePart("d",get_SWMatches_info.match_time1)#,#DatePart("h",get_SWMatches_info.match_time1)#,#DatePart("n",get_SWMatches_info.match_time1)#,#DatePart("s",get_SWMatches_info.match_time1)#">#DateFormat(get_SWMatches_info.match_time1,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.match_time1,"h:mm tt")#
+												<option value="#DatePart("yyyy",get_SWMatches_info.match_time2)#,#DatePart("m",get_SWMatches_info.match_time2)#,#DatePart("d",get_SWMatches_info.match_time2)#,#DatePart("h",get_SWMatches_info.match_time2)#,#DatePart("n",get_SWMatches_info.match_time2)#,#DatePart("s",get_SWMatches_info.match_time2)#">#DateFormat(get_SWMatches_info.match_time2,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.match_time2,"h:mm tt")#
 												</cfoutput>
 											</select>										
 										</td>										
@@ -324,8 +324,8 @@
 															<td align="top">
 																<div class="copy">											
 																	<select name="date1">											
-																		<cfoutput><option value='#DateFormat(get_swmatches_info.match_time1,"yyyy,m,d")#'>#DateFormat(get_swmatches_info.match_time1,"mmmm d, yyyy")#</cfoutput>
-																		<cfoutput><option value='#DateFormat(get_swmatches_info.match_time2,"yyyy,m,d")#'>#DateFormat(get_swmatches_info.match_time2,"mmmm d, yyyy")#</cfoutput>
+																		<cfoutput><option value='#DateFormat(get_SWMatches_info.match_time1,"yyyy,m,d")#'>#DateFormat(get_SWMatches_info.match_time1,"mmmm d, yyyy")#</cfoutput>
+																		<cfoutput><option value='#DateFormat(get_SWMatches_info.match_time2,"yyyy,m,d")#'>#DateFormat(get_SWMatches_info.match_time2,"mmmm d, yyyy")#</cfoutput>
 																	</select>																
 																</div>										
 															</td>		
@@ -362,7 +362,7 @@
 																					
 								
 								
-								<input type="hidden" name="swcode" value="<cfoutput>#get_matches.Swcode#</cfoutput>">
+								<input type="hidden" name="SWCode" value="<cfoutput>#get_matches.SWCode#</cfoutput>">
 								<center><input type='submit' value='Set Battle Parameters'></center>
 								</cfform>		
 								
@@ -384,7 +384,7 @@
 										<td>&nbsp;&nbsp;</td>
 										<td>
 											<div class="copy">
-												<cfoutput>#get_swmatches_info.mission#</cfoutput>
+												<cfoutput>#get_SWMatches_info.mission#</cfoutput>
 											</div>								
 										</td>
 									</tr>
@@ -393,7 +393,7 @@
 										<td>&nbsp;&nbsp;</td>
 										<td>
 											<div class="copy">
-												<cfoutput>#get_swmatches_info.pilots#</cfoutput>
+												<cfoutput>#get_SWMatches_info.pilots#</cfoutput>
 											</div>											
 										</td>										
 									</tr>
@@ -402,7 +402,7 @@
 										<td>&nbsp;&nbsp;</td>
 										<td>
 											<div class="copy">
-												<cfoutput>#get_swmatches_info.ai#</cfoutput>
+												<cfoutput>#get_SWMatches_info.ai#</cfoutput>
 											</div>										
 										</td>										
 									</tr>																																	
@@ -431,8 +431,8 @@
 										<td>
 											<select name="final_time">
 												<cfoutput>
-												<option value="#DatePart("yyyy",get_swmatches_info.proposed_final_time)#,#DatePart("m",get_swmatches_info.proposed_final_time)#,#DatePart("d",get_swmatches_info.proposed_final_time)#,#DatePart("h",get_swmatches_info.proposed_final_time)#,#DatePart("n",get_swmatches_info.proposed_final_time)#,#DatePart("s",get_swmatches_info.proposed_final_time)#">#DateFormat(get_swmatches_info.proposed_final_time,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.proposed_final_time,"h:mm tt")#
-												<option value="#DatePart("yyyy",get_swmatches_info.proposed_alternate_time)#,#DatePart("m",get_swmatches_info.proposed_alternate_time)#,#DatePart("d",get_swmatches_info.proposed_alternate_time)#,#DatePart("h",get_swmatches_info.proposed_alternate_time)#,#DatePart("n",get_swmatches_info.proposed_alternate_time)#,#DatePart("s",get_swmatches_info.proposed_alternate_time)#">#DateFormat(get_swmatches_info.proposed_alternate_time,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.proposed_alternate_time,"h:mm tt")#
+												<option value="#DatePart("yyyy",get_SWMatches_info.proposed_final_time)#,#DatePart("m",get_SWMatches_info.proposed_final_time)#,#DatePart("d",get_SWMatches_info.proposed_final_time)#,#DatePart("h",get_SWMatches_info.proposed_final_time)#,#DatePart("n",get_SWMatches_info.proposed_final_time)#,#DatePart("s",get_SWMatches_info.proposed_final_time)#">#DateFormat(get_SWMatches_info.proposed_final_time,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.proposed_final_time,"h:mm tt")#
+												<option value="#DatePart("yyyy",get_SWMatches_info.proposed_alternate_time)#,#DatePart("m",get_SWMatches_info.proposed_alternate_time)#,#DatePart("d",get_SWMatches_info.proposed_alternate_time)#,#DatePart("h",get_SWMatches_info.proposed_alternate_time)#,#DatePart("n",get_SWMatches_info.proposed_alternate_time)#,#DatePart("s",get_SWMatches_info.proposed_alternate_time)#">#DateFormat(get_SWMatches_info.proposed_alternate_time,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.proposed_alternate_time,"h:mm tt")#
 												</cfoutput>
 											</select>										
 										</td>										
@@ -441,7 +441,7 @@
 										<td>&nbsp;</td>
 										<td>&nbsp;</td>
 										<td>
-											<input type="hidden" name="swcode" value="<cfoutput>#get_matches.Swcode#</cfoutput>">
+											<input type="hidden" name="SWCode" value="<cfoutput>#get_matches.SWCode#</cfoutput>">
 											<input type='submit' value='Set Final Time'>
 										</td>
 									</tr>																									
@@ -467,7 +467,7 @@
 										<td>
 											<div class="copy">
 												<cfoutput>
-												#DateFormat(get_swmatches_info.final_match_time,"mmmm d, yyyy")# #TimeFormat(get_swmatches_info.final_match_time,"h:mm tt")#
+												#DateFormat(get_SWMatches_info.final_match_time,"mmmm d, yyyy")# #TimeFormat(get_SWMatches_info.final_match_time,"h:mm tt")#
 												</cfoutput>
 											</div>								
 										</td>
@@ -487,8 +487,8 @@
 								
 								<cfquery datasource="#currentdatasource#" name="check_noshow">
 									SELECT *
-									FROM SWMatches_Info LEFT JOIN SWMatches ON SWMatches_Info.SWcode = SWMatches.SWCode
-									WHERE SWMatches.SWcode = '#this_swcode#'
+									FROM SWMatches_Info LEFT JOIN SWMatches ON SWMatches_Info.SWCode = SWMatches.SWCode
+									WHERE SWMatches.SWCode = '#this_SWCode#'
 								</cfquery>
 								<cfset this_reported=0>
 								<cfset other_reported=0>
@@ -506,7 +506,7 @@
 											<cfif NOT this_reported>
 											<div class="copy">
 												<cfform action="noshow.cfm">
-												<input type="hidden" name="swcode" value="<cfoutput>#this_swcode#</cfoutput>">
+												<input type="hidden" name="SWCode" value="<cfoutput>#this_SWCode#</cfoutput>">
 												<input type="submit" value="Report the other squad was a No-Show or request a Reschedule">
 												</cfform>
 											</div>		
@@ -518,7 +518,7 @@
 										</td>
 									</tr>																																
 								</table>	
-							<cfif get_swmatches_info.final_match_time LT Now()>		
+							<cfif get_SWMatches_info.final_match_time LT Now()>		
 							</cfif>						
 						</cfif>
 	<!--- END PHASE 4 --->
@@ -531,8 +531,8 @@
 					
 					<cfquery datasource="#currentdatasource#" name="check_protest">
 						SELECT *
-						FROM SWMatches_Info LEFT JOIN SWMatches ON SWMatches_Info.SWcode = SWMatches.SWCode
-						WHERE SWMatches.SWcode = '#this_swcode#'
+						FROM SWMatches_Info LEFT JOIN SWMatches ON SWMatches_Info.SWCode = SWMatches.SWCode
+						WHERE SWMatches.SWCode = '#this_SWCode#'
 					</cfquery>					
 				<cfset this_protested=0>
 				<cfset other_protested=0>
@@ -543,7 +543,7 @@
 				<cfif other_protested><div class="copy">The other Squad has protested this match and has removed it from the auto-forfeit system.</div></cfif>
 				<cfif NOT this_protested>
 					<cfform action="protest.cfm">
-					<input type="hidden" name="swcode" value="<cfoutput>#this_swcode#</cfoutput>">
+					<input type="hidden" name="SWCode" value="<cfoutput>#this_SWCode#</cfoutput>">
 					<input type="submit" value="Protest">
 					</cfform>
 					</div>

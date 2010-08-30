@@ -67,16 +67,11 @@
 --->
 
 <cfset isfullscreenhref=''>
-<cfif leagueid IS 1>
-	<center>
-		<cfset fullscreenhref='http://www.squadwar.com/leagues/1/map.cfm?isfullscreen=1&leagueid=#leagueid#'>
-	</center>
-<cfelseif leagueid IS 2>
-<cfelseif leagueid IS 3>
-<cfelseif leagueid IS 4>
-</cfif>
+<cfset relativepath='../../'>
+<center>
+	<cfset fullscreenhref='#relativepath#leagues/1/map.cfm?isfullscreen=1&leagueid=1'>
+</center>
 <cfif isdefined("isfullscreen")>
-		<cfset relativepath='../../'>
 		<html>
 		<head>
 		<title></title>
