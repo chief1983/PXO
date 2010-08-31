@@ -36,7 +36,7 @@
 	FROM         Freespace2 
 	WHERE 		TrackerID = '#get_Tracker.TrackerID#'
 </CFQUERY>
-<CFQUERY NAME="d3scores" DATASOURCE="PXOSQL"> <!--- cachedwithin="#CreateTimeSpan(0,0,30,0)#" --->
+<CFQUERY NAME="d3scores" DATASOURCE="PXO"> <!--- cachedwithin="#CreateTimeSpan(0,0,30,0)#" --->
 	SELECT      TrackerID, Pilot, TotalKills , TotalDeaths, Suicides, OnlineTime, Efficiency, KillsPerHour, DeathsPerHour, SuicidesPerHour, NewRank
 	FROM         Descent3
 	WHERE 		TrackerID = '#get_Tracker.TrackerID#'
