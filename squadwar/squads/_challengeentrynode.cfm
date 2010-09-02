@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfquery datasource="#currentdatasource#" name="quick_check_entry_nodes_challenge">
 	SELECT *
 	FROM SWMatches

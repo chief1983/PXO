@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfif NOT isdefined("id")>
 	<cfif isdefined("session.squadid")><cfset id=session.squadid></cfif>
 </cfif>

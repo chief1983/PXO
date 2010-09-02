@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfif NOT isdefined("session.squadid")><cflocation url="http://www.squadwar.com"></cfif>
 
 <cfquery datasource='#currentdatasource#' name="check_valid_phase4_squad">

@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <!-- URL's used in the movie-->
 <!-- text used in the movie-->
 <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"

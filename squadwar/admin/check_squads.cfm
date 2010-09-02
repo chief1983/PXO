@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfquery datasource="SquadWar" name="get_squads">
 	SELECT * FROM SWSquads			
 	WHERE (Squadid IN (SELECT SWSquad1 FROM match_history)) OR (Squadid IN (SELECT SWSquad2 FROM match_history))

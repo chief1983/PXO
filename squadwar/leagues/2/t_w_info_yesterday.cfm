@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfset checkdate=DateDiff('s',CreateDateTime(1970,1,1,0,0,0),NOW())>
 <cfset checkdate=checkdate-172800>
 <cfquery datasource="squadwar" name="get_matches">

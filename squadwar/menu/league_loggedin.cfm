@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 					<!--- start menu main --->
 					<img src="<cfoutput>#relativepath#</cfoutput>images/main/header.jpg" width=110 height=207 alt="" border="0"><br>
 						

@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <!---
 		Call this with CF_MailTest.  Set the parameter "EMail" equal to the address
 		you want to check.  This function will set two variables - "EMail_Level" and "EMail_Message"

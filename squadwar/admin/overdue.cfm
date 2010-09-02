@@ -1,11 +1,10 @@
-<!--
+<!---
    Copyright (C) Volition, Inc. 2005.  All rights reserved.
 
    All source code herein is the property of Volition, Inc. You may not sell 
    or otherwise commercially exploit the source or things you created based on the 
    source.
--->
-
+--->
 <cfquery datasource="squadwar" name="get_pending_matches">
 	SELECT SWMatches.SWCode, SWMatches.SWSquad1, SWMatches.SWSquad2, SWMatches.SWSector_ID, SWMatches.League_ID
 		,SWMatches_Info.match_time1 ,SWMatches_Info.match_time2 ,SWMatches_Info.proposed_final_time 
