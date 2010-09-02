@@ -49,7 +49,7 @@
 					</table>	
 					</cfform>
 				</td>
-				<td><td><img src="images/spacer.gif" width=40 height=3 alt="" border="0"></td></td>
+				<td><img src="images/spacer.gif" width=40 height=3 alt="" border="0"></td>
 				<td valign="top">
 					<cfquery datasource="pxo" name="count_pxo_users" cachedwithin="#CreateTimeSpan(0,0,30,0)#">
 						SELECT Count(TrackerID) AS totalusers
@@ -110,7 +110,7 @@
 			</td></tr></table>			
 			
 		</center>				
-<hr noshade color="#2E5537" >		
+<hr noshade style="color:#2E5537;">
 	<!--- start --->
 				<center>
 				<table width="95%" cellpadding=0 cellspacing=0 border=0><tr><td>

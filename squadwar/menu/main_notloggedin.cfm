@@ -11,10 +11,10 @@
 							<img src="<cfoutput>#relativepath#</cfoutput>images/menu/actions.gif" width=110 height=25 alt="" border="0"><br>
 							<table width="100%" cellpadding=0 cellspacing=0 border=0>
 								<tr>
-									<td background="" valign="top">
+									<td valign="top">
 										<img src="<cfoutput>#relativepath#</cfoutput>images/spacer.gif" width=5 height=1 alt="" border="0"><br>
 									</td>
-									<td background="" valign="top">
+									<td valign="top">
 										<div class="copy">
 											<a href="new.cfm">New Pilots</a><br>
 											<a href="login.cfm">Log In</a><br>
@@ -25,12 +25,12 @@
 							</table>
 			
 							<img src="<cfoutput>#relativepath#</cfoutput>images/menu/info.gif" width=110 height=25 alt="" border="0"><br>
-							<table background="" width="100%" cellpadding=0 cellspacing=0 border=0>
+							<table width="100%" cellpadding=0 cellspacing=0 border=0>
 								<tr>
-									<td background="" valign="top">
+									<td valign="top">
 										<img src="<cfoutput>#relativepath#</cfoutput>images/spacer.gif" width=5 height=1 alt="" border="0"><br>
 									</td>
-									<td background="" valign="top">
+									<td valign="top">
 										<div class="copy">
 											<a href="index.cfm">News</a><br>										
 											<a href="oldnews.cfm">News Archive</a><br>		
@@ -51,12 +51,12 @@
 								ORDER BY League_ID
 							</cfquery>
 			
-							<table background="" width="100%" cellpadding=0 cellspacing=0 border=0>
+							<table width="100%" cellpadding=0 cellspacing=0 border=0>
 								<tr>
-									<td background="" valign="top">
+									<td valign="top">
 										<img src="<cfoutput>#relativepath#</cfoutput>images/spacer.gif" width=5 height=1 alt="" border="0"><br>
 									</td>
-									<td background="" valign="top">
+									<td valign="top">
 										<b>Active</b><br>
 										<div class="copy">
 											<cfoutput query="get_swleagues">

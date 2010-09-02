@@ -6,6 +6,8 @@
    source.
 --->
 <!--- start doc top --->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+		"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<title><cfoutput>#document_title#</cfoutput></title>
@@ -15,10 +17,10 @@
 
 			<table cellpadding="0" cellspacing="0" width="100%" border=0>
 			<tr>
-				<td valign="top" width=110 height="23" background="<cfoutput>#relativepath#</cfoutput>images/main/bkg_bar_top.gif">
+				<td valign="top" width=110 height="23" style="background-image:url(<cfoutput>#relativepath#</cfoutput>images/main/bkg_bar_top.gif);">
 					<img src="<cfoutput>#relativepath#</cfoutput>images/main/header_top.jpg" width=110 height=23 alt="" border="0"><br>
 				</td>
-				<td valign="top" width="100%" height="23" background="<cfoutput>#relativepath#</cfoutput>images/main/bkg_bar_top.gif">
+				<td valign="top" width="100%" height="23" style="background-image:url(<cfoutput>#relativepath#</cfoutput>images/main/bkg_bar_top.gif);">
 					<a href="<cfoutput>#relativepath#</cfoutput>"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/home.gif" width=100 height=23 alt="" border="0"></a><a 
 						href="http://www.hard-light.net/forums/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/forums.gif" width=100 height=23 alt="" border="0"></a><a 
 						href="<cfoutput>#relativepath#</cfoutput>rules/"><img src="<cfoutput>#relativepath#</cfoutput>images/menu/rules.gif" width=100 height=23 alt="" border="0"></a><a 
@@ -27,5 +29,5 @@
 				</td>
 			</tr>			
 			<tr>
-				<td background="<cfoutput>#relativepath#</cfoutput>images/main/bkg_left_bot.gif" width="110" align="left" valign="top">
+				<td style="background-image:url(<cfoutput>#relativepath#</cfoutput>images/main/bkg_left_bot.gif);" width="110" align="left" valign="top">
 <!--- end doc top --->	
