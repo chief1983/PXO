@@ -9,7 +9,7 @@
 <cfinclude template="variables.cfm">
 <cfif NOT isdefined("session.loggedin")><cfset session.loggedin=0></cfif>
 
-<cfset document_title="SquadWar.Com - A Parallax Online Site">
+<cfset document_title="SquadWar">
 
 <cfinclude template="#relativepath#doc_top.cfm">
 
@@ -33,11 +33,11 @@
 					<div class="title">SquadWar Log In</div>	
 					<table>
 						<tr>
-							<td><div class="copy">PXO Login:</div></td>
+							<td><div class="copy">Username:</div></td>
 							<td><cfinput type="text" name="login" message="You must enter your login." required="yes" size="15" maxlength="50"><br></td>
 						</tr>
 						<tr>
-							<td><div class="copy">PXO Password:</div></td>
+							<td><div class="copy">Password:</div></td>
 							<td><cfinput type="password" name="password" message="You must enter your password." required="yes" size="15" maxlength="50"><br></td>
 						</tr>
 						<tr>	
@@ -73,7 +73,7 @@
 					<div class="title">PXO at a glance:</div>
 					<table><tr><td>
 					<div class="copy">
-						<cfoutput><b>#count_pxo_users.totalusers#</b></cfoutput> Validated PXO Users<br>
+						<cfoutput><b>#count_pxo_users.totalusers#</b></cfoutput> Validated Users<br>
 						<cfoutput><b>#count_fs2_pilots.totalusers#</b></cfoutput> FreeSpace 2 Pilots<br>
 						<cfoutput><b>#count_fs2_players.recordcount#</b></cfoutput> FreeSpace 2 Players<br>
 						<cfoutput><b>#count_sw_squads.totalusers#</b></cfoutput> SquadWar Squadrons<br>
