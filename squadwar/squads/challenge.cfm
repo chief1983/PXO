@@ -262,18 +262,26 @@
 						<!---
 						final list of sectors can challenge:<cfoutput>#final_sectors_can_challenge#</cfoutput><p>
 						--->
-						<cfquery datasource="#currentdatasource#" name="final_challenge">
-							SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
-									 ,SWSectors.SectorName, SWSectors.Entry_Node
-									 ,SWSquads.SquadName ,SWSquads.SquadID  
-							FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
-							WHERE	((SWSectors.SWSectors_ID IN (#final_sectors_can_challenge#)) AND (SWSectors.League_ID = #leagueid#))
-							ORDER BY SWSectors_Graph.SWSectors_ID	
-						</cfquery>
-
-						
-						<cfset canchallenge=1>
-						
+						<cfif (final_sectors_can_challenge IS NOT '')>
+							<cfquery datasource="#currentdatasource#" name="final_challenge">
+								SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
+										 ,SWSectors.SectorName, SWSectors.Entry_Node
+										 ,SWSquads.SquadName ,SWSquads.SquadID  
+								FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
+								WHERE	((SWSectors.SWSectors_ID IN (#final_sectors_can_challenge#)) AND (SWSectors.League_ID = #leagueid#))
+								ORDER BY SWSectors_Graph.SWSectors_ID	
+							</cfquery>
+							<cfset canchallenge=1>
+						<cfelse>
+							<cfquery datasource="#currentdatasource#" name="final_challenge">
+								SELECT	SWSectors_Graph.SWSectors_ID, SWSectors_Graph.path_1, SWSectors_Graph.path_2, SWSectors_Graph.path_3, SWSectors_Graph.path_4, SWSectors_Graph.path_5
+										 ,SWSectors.SectorName, SWSectors.Entry_Node
+										 ,SWSquads.SquadName ,SWSquads.SquadID  
+								FROM	(SWSectors INNER JOIN SWSectors_Graph ON (SWSectors_Graph.SWSectors_ID = SWSectors.SWSectors_ID)) LEFT OUTER JOIN SWSquads ON SWSectors.SectorSquad = SWSquads.SquadID
+								WHERE	1 = 0
+							</cfquery>
+							<cfset canchallenge=0>
+						</cfif>
 						
 						<!--- GET MATCHES --->
 						

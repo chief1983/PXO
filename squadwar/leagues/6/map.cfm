@@ -6,6 +6,8 @@
    source.
 --->
 <cfset id=6>
+<cfset leagueid=id>
+<cfif NOT Isdefined("relativepath")><cfset relativepath=''></cfif>
 <cfquery datasource='#currentdatasource#' name='get_leagues'>
 	SELECT *
 	FROM SWLeagues

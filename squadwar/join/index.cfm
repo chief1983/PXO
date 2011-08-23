@@ -68,7 +68,7 @@
 							</tr>
 							<cfset coloredrow=1>
 							<cfoutput query="get_squads">
-								<cfif coloredrow IS 1><cfset coloredrow=0><tr bgcolor="##0B160D"><cfelse></tr><cfset coloredrow=1></cfif>
+								<cfif coloredrow IS 1><cfset coloredrow=0><tr bgcolor="##0B160D"><cfelse><tr><cfset coloredrow=1></cfif>
 								<td><div class="squadtable"><a href="join_squad.cfm?id=#SquadID#">#SquadName#</a></div></td>
 								<td><div class="squadtable"><cfif Squad_Web_Link IS NOT ''><a href="#Squad_Web_Link#">yes</a><cfelse>&nbsp;</cfif></div></td>
 								<td><div class="squadtable"><cfif Squad_Leader_ICQ IS NOT ''>#Squad_Leader_ICQ#</cfif></div></td>
