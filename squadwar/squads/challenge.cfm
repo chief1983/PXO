@@ -397,8 +397,8 @@
 													WHERE ((SWMatches.swsquad2)=#canchallengeunclaimed_adjacent_test_unowned.owner_path_1#) AND (SWSectors.League_ID = #leagueid#)
 												</cfquery>	
 												<cfif get_currentpath_matchcount.recordcount LT CHALLENGED_MAX>
-														<cfset optionstring= optionstring & '<option value="#canchallengeunclaimed_adjacent_test_unowned.SWSectors_ID#,#canchallengeunclaimed_adjacent_test_unowned.owner_path_1#">Unclamined sector #canchallengeunclaimed_adjacent_test_unowned.SectorName# - #canchallengeunclaimed_adjacent_test_unowned.SWSectors_ID# vs. '>
-															<cfloop query="fetch_squadnames"><cfif fetch_squadnames.SquadID IS canchallengeunclaimed_adjacent_test_unowned.owner_path_1><cfset optionstring= optionstring & '#fetch_squadnames.SquadName#'></cfif></cfloop> 
+													<cfset optionstring= optionstring & '<option value="#canchallengeunclaimed_adjacent_test_unowned.SWSectors_ID#,#canchallengeunclaimed_adjacent_test_unowned.owner_path_1#">Unclamined sector #canchallengeunclaimed_adjacent_test_unowned.SectorName# - #canchallengeunclaimed_adjacent_test_unowned.SWSectors_ID# - '>
+														<cfloop query="fetch_squadnames"><cfif fetch_squadnames.SquadID IS canchallengeunclaimed_adjacent_test_unowned.owner_path_1><cfset optionstring= optionstring & '#fetch_squadnames.SquadName#'></cfif></cfloop> 
 													<cfif unownedstring IS NOT ''><cfset unownedstring=unownedstring&','></cfif>
 													<cfset unownedstring=unownedstring&canchallengeunclaimed_adjacent_test_unowned.SWSectors_ID>															
 													<cfset pathcheck=1>

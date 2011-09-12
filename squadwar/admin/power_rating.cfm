@@ -40,7 +40,7 @@ Current game time is: <cfoutput>#checkdate#</cfoutput>
 								,(SELECT COUNT(match_history.match_victor) FROM match_history WHERE match_victor = SWSquads.SquadId ) AS wins
 						FROM SWSquads LEFT JOIN SWSectors ON SWSquads.SquadId = SWSectors.SectorSquad
 						GROUP BY SWSquads.SquadName, SWSquads.SquadId, SWSquads.Active, SWSquads.SquadMembers
-						HAVING ((SWSquads.Active)=Yes) AND (SWSquads.SquadId > #last#) AND (SWSquads.SquadId <= #Evaluate(last + inc)#)
+						HAVING ((SWSquads.Active)=1) AND (SWSquads.SquadId > #last#) AND (SWSquads.SquadId <= #Evaluate(last + inc)#)
 						ORDER BY Count(SWSectors.SectorName) DESC, SWSquads.SquadName;
 					</cfquery>	
 					
